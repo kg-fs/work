@@ -1,27 +1,27 @@
-function Header() {
-     const user = JSON.parse(localStorage.getItem('user') || '{}');
+import { useNavigate } from 'react-router-dom';
 
-     return (
-      
-       <div className=" w-full h-[50px] flex items-center justify-between mx-5 my-5">
-           <h1 className="text-2xl text-white font-bold mb-4 text-center">
-             Bienvenido, {user?.username || 'Usuario'}
-           </h1>
-           <a href=""></a>
-           <a href=""></a>
-           <a href=""></a>
-           <button
-             className="w-[200px text-white p-2 rounded  hover:scale-105 transition-transform"
-             onClick={() => {
-               localStorage.removeItem('user');
-               window.location.href = '/';
-             }}
-           >
-             Cerrar Sesión
-           </button>
-         
-       </div>
-     );
-   }
+function Header() {
+  const navigate = useNavigate();
+  const user = localStorage.getItem('user');
+  return (
+
+    <div className="h-[50px] flex items-center justify-between mx-5 my-5">
+      <h1 className="text-xl text-black font-bold m-3 text-center">
+        Welcome, {user}
+      </h1>
+
+      <button
+        className="bg-black text-white m-3 p-2 rounded  hover:scale-105 transition-transform"
+        onClick={() => {
+          localStorage.removeItem('user');
+          navigate('/');
+        }}
+      >
+        log out
+      </button>
+
+    </div>
+  );
+}
 
    export default Header;

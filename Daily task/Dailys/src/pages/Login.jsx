@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { client } from '../../supabase/client';
 import { useNavigate } from 'react-router-dom';
 
-
-
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -15,11 +13,10 @@ function Login() {
     if (user) {
       navigate('/home');
     }
+    
   }, [navigate]);
 
   const handleLogin = async () => {
-    console.log("hola")
-
     try {
       const { data, error } = await client.auth.signInWithPassword({
         email,
@@ -29,11 +26,11 @@ function Login() {
         throw error;
       }
       if(data.user) {
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('user', data.user.email);
         navigate('/home');
       }
-    
-      console.log(data);
+  
+      console.log(localStorage.getItem('user'));
     } catch (error) {
       console.error('Error during login:', error);
 
@@ -44,7 +41,7 @@ function Login() {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className=" p-6 bg-white w-full max-w-md">
-        <h2 class="text-3xl text-center font-bold text-gray-900 mb-12">Bienvenido de nuevo</h2>
+        <h2 className="text-3xl text-center font-bold text-gray-900 mb-12">Welcome back</h2>
         <input
           type="text"
           className=" w-full px-4 py-3 text-center border-b mb-12 focus:outline-none"
@@ -56,7 +53,7 @@ function Login() {
         <input
           type="password"
           className="w-full px-4 py-3 text-center border-b mb-12 focus:outline-none"
-          placeholder="Contraseña"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -65,7 +62,7 @@ function Login() {
           className="w-full bg-white text-black p-2 rounded hover:scale-105 transition-transform"
           onClick={handleLogin}
         >
-          Iniciar Sesión
+          Login
         </button>
       </div>
     </div>
