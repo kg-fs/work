@@ -13,7 +13,7 @@ function Login() {
     if (user) {
       navigate('/home');
     }
-    
+
   }, [navigate]);
 
   const handleLogin = async () => {
@@ -22,14 +22,14 @@ function Login() {
         email,
         password,
       });
-      if(error) {
+      if (error) {
         throw error;
       }
-      if(data.user) {
+      if (data.user) {
         localStorage.setItem('user', data.user.email);
         navigate('/home');
       }
-  
+
       console.log(localStorage.getItem('user'));
     } catch (error) {
       console.error('Error during login:', error);

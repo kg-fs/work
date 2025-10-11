@@ -13,11 +13,11 @@ function Home() {
 
   return (
     <div className="min-h-screen flex-col bg-white flex ">
-      <Header /> 
+      <Header />
       <Navbar />
-      
-      
-      
+
+
+
     </div>
   );
 }

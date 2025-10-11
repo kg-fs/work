@@ -12,11 +12,11 @@ function Adduser() {
 
   return (
     <div className="min-h-screen flex-col bg-white flex ">
-      <HeaderPages/>
-      
-      
-      
-      
+      <HeaderPages />
+
+
+
+
     </div>
   );
 }
